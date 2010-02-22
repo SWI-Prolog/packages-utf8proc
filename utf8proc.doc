@@ -1,0 +1,44 @@
+\documentclass[11pt]{article}
+\usepackage{times}
+\usepackage{pl}
+\usepackage{html}
+\sloppy
+\makeindex
+
+\onefile
+\htmloutput{html}				% Output directory
+\htmlmainfile{index}				% Main document file
+\bodycolor{white}				% Page colour
+
+\begin{document}
+
+\title{SWI-Prolog Unicode library}
+\author{Jan Wielemaker \\
+	VU University, Amsterdam \\
+	The Netherlands \\
+	E-mail: \email{J.Wielemaker@cs.vu.nl}}
+
+\maketitle
+
+\begin{abstract}
+This package wraps
+\url[utf8proc]{http://www.public-software-group.org/utf8proc} unicode
+routines. This library provides the four unicode normalization forms
+(NFC, NFD, NFKC, NFKD) as well as access to the Unicode character
+properties.
+\end{abstract}
+
+\pagebreak
+\tableofcontents
+
+\vfill
+\vfill
+
+\newpage
+
+\input{unicode.tex}
+
+\printindex
+
+\end{document}
+

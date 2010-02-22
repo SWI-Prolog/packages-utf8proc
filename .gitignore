@@ -7,3 +7,16 @@
 *.manifest
 *~
 .pl-history
+Makefile
+autom4te.cache
+config.*
+configure
+unicode.tex
+utf8proc.tex
+*.aux
+*.html
+*.idx
+*.ilg
+*.log
+*.out
+*.pdf
