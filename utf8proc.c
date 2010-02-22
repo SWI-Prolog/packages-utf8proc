@@ -212,6 +212,10 @@ ssize_t utf8proc_decompose_char(int32_t uc, int32_t *dst, ssize_t bufsize,
   const utf8proc_property_t *property;
   utf8proc_propval_t category;
   int32_t hangul_sindex;
+
+  if ( uc >= 0x110000 )			/* JW: Safety */
+    return UTF8PROC_ERROR_NOTASSIGNED;
+
   property = utf8proc_get_property(uc);
   category = property->category;
   hangul_sindex = uc - UTF8PROC_HANGUL_SBASE;

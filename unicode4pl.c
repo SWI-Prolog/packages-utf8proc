@@ -426,7 +426,6 @@ unicode_map(term_t in, term_t out, term_t options)
       case UTF8PROC_ERROR_OVERFLOW:
 	return resource_error("string_length");
       case UTF8PROC_ERROR_INVALIDUTF8:
-	assert(0);
       case UTF8PROC_ERROR_NOTASSIGNED:
 	return domain_error("unicode_string", in);
       case UTF8PROC_ERROR_INVALIDOPTS:
