@@ -121,5 +121,6 @@ clean:
 
 distclean:	clean
 		rm -f $(TARGETS) config.cache config.h config.status Makefile
-		rm -f $(DOC).aux $(DOC).log $(DOC).out $(DOC).toc
+		rm -f $(DOC).aux $(DOC).log $(DOC).out $(DOC).toc $(DOC).idx
+		rm -f $(DOC).ilg $(TEX)
 		rm -rf html
