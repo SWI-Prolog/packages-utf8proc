@@ -123,4 +123,5 @@ distclean:	clean
 		rm -f $(TARGETS) config.cache config.h config.status Makefile
 		rm -f $(DOC).aux $(DOC).log $(DOC).out $(DOC).toc $(DOC).idx
 		rm -f $(DOC).ilg $(TEX)
-		rm -rf html
+		rm -f .pl-history config.h.in configure
+		rm -rf html autom4te.cache utf8proc.html utf8proc.pdf
