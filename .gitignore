@@ -1,0 +1,9 @@
+*.a
+*.o
+*.so
+*.dylib
+*.lib
+*.dll
+*.manifest
+*~
+.pl-history
