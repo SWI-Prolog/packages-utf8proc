@@ -6,8 +6,8 @@
 \makeindex
 
 \onefile
-\htmloutput{html}				% Output directory
-\htmlmainfile{index}				% Main document file
+\htmloutput{.}					% Output directory
+\htmlmainfile{utf8proc}				% Main document file
 \bodycolor{white}				% Page colour
 
 \begin{document}

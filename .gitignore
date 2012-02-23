@@ -13,6 +13,8 @@ config.*
 configure
 unicode.tex
 utf8proc.tex
+*.ind
+*.toc
 *.aux
 *.html
 *.idx
