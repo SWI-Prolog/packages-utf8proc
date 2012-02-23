@@ -78,5 +78,4 @@ distclean:	clean
 		rm -f $(TARGETS) config.cache config.h config.status Makefile
 		rm -f $(DOC).aux $(DOC).log $(DOC).out $(DOC).toc $(DOC).idx
 		rm -f $(DOC).ilg $(TEX)
-		rm -f .pl-history config.h.in configure
-		rm -rf html autom4te.cache $(DOC).html $(DOC).pdf
+		rm -rf html autom4te.cache
