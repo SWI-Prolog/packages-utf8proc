@@ -4,6 +4,10 @@
 *.dylib
 *.lib
 *.dll
+*.exp
+*.ilk
+*.obj
+*.pdb
 *.manifest
 *~
 .pl-history
