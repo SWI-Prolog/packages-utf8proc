@@ -31,10 +31,10 @@ install::
 		$(MAKEINDEX)
 
 html-install::
-		copy unicode.html "$(PKGDOC)"
+		copy utf8proc.html "$(PKGDOC)"
 
 pdf-install::
-		copy unicode.pdf "$(PKGDOC)"
+		copy utf8proc.pdf "$(PKGDOC)"
 
 xpce-install::
 
