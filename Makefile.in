@@ -66,6 +66,11 @@ check::
 # Documentation
 ################################################################
 
+TEXEXTRA=	unicode.tex
+$(TEX):		$(TEXEXTRA)
+
+unicode.tex:	unicode.pl
+		$(PLTOTEX) --section 'library(unicode)'
 
 ################################################################
 # Clean
