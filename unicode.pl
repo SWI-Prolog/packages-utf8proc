@@ -42,7 +42,7 @@
 
 This       library       is       a       wrapper       around       the
 [[utf8proc][http://www.public-software-group.org/utf8proc]]     library,
-provinding  information  about  Unicode    code-points   and  performing
+providing  information  about   Unicode    code-points   and  performing
 operations  (mappings)  on  Unicode  atoms.  The  central  predicate  is
 unicode_map/3, mapping a Unicode atom to   another  Unicode atom using a
 sequence of operations.  The   predicates  unicode_nfd/2, unicode_nfc/2,
