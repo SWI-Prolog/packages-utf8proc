@@ -24,7 +24,7 @@ OBJ=		utf8proc.o unicode4pl.o
 all:		$(TARGETS)
 
 unicode4pl.@SO@:	$(OBJ)
-		$(LD) $(LDSOFLAGS) -o $@ $(OBJ)
+		$(LD) $(LDSOFLAGS) -o $@ $(OBJ) $(LIBPLSO)
 
 install:	$(TARGETS) $(LIBPL)
 		mkdir -p  $(DESTDIR)$(SOLIBDIR)
