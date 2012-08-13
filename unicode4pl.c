@@ -120,7 +120,7 @@ resource_error(const char *what)
 typedef struct pmap
 { char		code;
   char	       *name;
-  atom_t 	atom;
+  atom_t	atom;
 } pmap;
 
 #define CAT(n) { UTF8PROC_CATEGORY_ ## n, #n, 0 }
@@ -412,6 +412,8 @@ unicode_map(term_t in, term_t out, term_t options)
 		      CVT_ATOM|CVT_STRING|CVT_LIST|CVT_EXCEPTION|
 		      REP_UTF8) )
     return FALSE;
+  if ( len_in == 0 )			/* empty atom */
+    return PL_unify_chars(out, PL_ATOM, 0, utf8_in);
   len_out = utf8proc_map((uint8_t*)utf8_in, len_in, &utf8_out, mask);
   if ( len_out > 0 )
   { int rc;
