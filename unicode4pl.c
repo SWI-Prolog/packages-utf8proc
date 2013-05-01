@@ -208,6 +208,9 @@ static int
 unify_symbol(term_t arg, int code, pmap *map)
 { pmap *m;
 
+  if ( code == 0 )
+    return FALSE;
+
   m = &map[code-1];
   if ( m->code != code )
   { for(m=map; m->code && m->code != code; m++)
@@ -307,19 +310,24 @@ unicode_property(term_t code, term_t property)
   else if ( pname == ATOM_decomp_type )
     return unify_symbol(arg, p->decomp_type, decomp_map);
   else if ( pname == ATOM_decomp_mapping )
-    return unify_wstring(arg, p->decomp_mapping);
+    return p->decomp_mapping ? unify_wstring(arg, p->decomp_mapping) : FALSE;
   else if ( pname == ATOM_bidi_mirrored )
     return PL_unify_bool(arg, p->bidi_mirrored);
   else if ( pname == ATOM_uppercase_mapping )
-    return PL_unify_integer(arg, p->uppercase_mapping);
+    return p->uppercase_mapping >= 0 ?
+		PL_unify_integer(arg, p->uppercase_mapping) : FALSE;
   else if ( pname == ATOM_lowercase_mapping )
-    return PL_unify_integer(arg, p->lowercase_mapping);
+    return p->lowercase_mapping >= 0 ?
+		PL_unify_integer(arg, p->lowercase_mapping) : FALSE;
   else if ( pname == ATOM_titlecase_mapping )
-    return PL_unify_integer(arg, p->titlecase_mapping);
+    return p->titlecase_mapping >= 0 ?
+		PL_unify_integer(arg, p->titlecase_mapping) : FALSE;
   else if ( pname == ATOM_comb1st_index )
-    return PL_unify_integer(arg, p->comb1st_index);
-  else if ( pname == ATOM_comb1st_index )
-    return PL_unify_integer(arg, p->comb1st_index);
+    return p->comb1st_index >= 0 ?
+		PL_unify_integer(arg, p->comb1st_index) : FALSE ;
+  else if ( pname == ATOM_comb2nd_index )
+    return p->comb2nd_index >= 0 ?
+		PL_unify_integer(arg, p->comb2nd_index) : FALSE;
   else if ( pname == ATOM_comp_exclusion )
     return PL_unify_bool(arg, p->comp_exclusion);
   else if ( pname == ATOM_ignorable )
@@ -329,7 +337,7 @@ unicode_property(term_t code, term_t property)
   else if ( pname == ATOM_extend )
     return PL_unify_bool(arg, p->extend);
   else if ( pname == ATOM_casefold_mapping )
-    return unify_wstring(arg, p->casefold_mapping);
+    return p->casefold_mapping ? unify_wstring(arg, p->casefold_mapping) : FALSE;
   else
     return domain_error("unicode_property", property);
 }

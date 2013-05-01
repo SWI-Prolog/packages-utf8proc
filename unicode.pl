@@ -210,7 +210,7 @@ unicode_property(Code, Property) :-
 	nonvar(Code), nonvar(Property), !,
 	'$unicode_property'(Code, Property).
 unicode_property(Code, Property) :-
-	atom(Code), !,
+	nonvar(Code), !,
 	property(Property),
 	'$unicode_property'(Code, Property).
 unicode_property(Code, Property) :-
