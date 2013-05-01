@@ -337,8 +337,21 @@ unicode_property(term_t code, term_t property)
   else if ( pname == ATOM_extend )
     return PL_unify_bool(arg, p->extend);
   else if ( pname == ATOM_casefold_mapping )
-    return p->casefold_mapping ? unify_wstring(arg, p->casefold_mapping) : FALSE;
-  else
+  { if ( p->casefold_mapping )
+    { term_t tail = PL_copy_term_ref(arg);
+      term_t head = PL_new_term_ref();
+      const int32_t *ws = p->casefold_mapping;
+
+      for(; *ws >= 0; ws++)
+      { if ( !PL_unify_list(tail, head, tail) ||
+	     !PL_unify_integer(head, *ws) )
+	  return FALSE;
+      }
+
+      return PL_unify_nil(tail);
+    }
+    return FALSE;
+  } else
     return domain_error("unicode_property", property);
 }
 
