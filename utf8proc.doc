@@ -39,6 +39,7 @@ properties.
 \input{unicode.tex}
 
 \section{License}
+\label{sec:utf8proc-license}
 
 Copyright (c) 2009 Public Software Group e. V., Berlin, Germany
 
