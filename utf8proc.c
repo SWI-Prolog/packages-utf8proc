@@ -96,7 +96,7 @@ const int8_t utf8proc_utf8class[256] = {
 
 
 const char *utf8proc_version(void) {
-  return "1.1.5";
+  return "1.1.6";
 }
 
 const char *utf8proc_errmsg(ssize_t errcode) {
