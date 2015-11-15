@@ -20,6 +20,7 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+#include <config.h>
 #include <SWI-Prolog.h>
 #include "utf8proc.h"
 #include <assert.h>
@@ -275,7 +276,7 @@ unicode_property(term_t code, term_t property)
 { int32_t uc;
   const utf8proc_property_t *p;
   atom_t pname;
-  int parity;
+  size_t parity;
   term_t arg = PL_new_term_ref();
 
   if ( !PL_get_integer(code, &uc) )
