@@ -3,9 +3,9 @@
 :- use_module(library(apply_macros)).
 
 ptest1(N) :-
-	forall(between(1, N, _),
-	       unicode_nfc(hello, _)).
+    forall(between(1, N, _),
+           unicode_nfc(hello, _)).
 
 ptest2(N) :-
-	forall(between(1, N, _),
-	       downcase_atom(hello, _)).
+    forall(between(1, N, _),
+           downcase_atom(hello, _)).

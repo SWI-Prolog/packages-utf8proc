@@ -33,13 +33,13 @@
 */
 
 :- module(unicode,
-	  [ unicode_property/2,		% ?Code, ?Property
-	    unicode_map/3,		% +In, -Out, +Options
-	    unicode_nfd/2,		% +In, -Out
-	    unicode_nfc/2,		% +In, -Out
-	    unicode_nfkd/2,		% +In, -Out
-	    unicode_nfkc/2		% +In, -Out
-	  ]).
+          [ unicode_property/2,         % ?Code, ?Property
+            unicode_map/3,              % +In, -Out, +Options
+            unicode_nfd/2,              % +In, -Out
+            unicode_nfc/2,              % +In, -Out
+            unicode_nfkd/2,             % +In, -Out
+            unicode_nfkc/2              % +In, -Out
+          ]).
 
 :- use_foreign_library(foreign(unicode4pl)).
 
@@ -88,141 +88,144 @@ U+007E  ~   <-- tilde operator U+223C
 */
 
 system:goal_expansion(unicode_map(In, Out, Options),
-		      unicode_map(In, Out, Mask)) :-
-	is_list(Options),
-	unicode_option_mask(Options, Mask).
+                      unicode_map(In, Out, Mask)) :-
+    is_list(Options),
+    unicode_option_mask(Options, Mask).
 
-%%	unicode_map(+In, -Out, +Options) is det.
+%!  unicode_map(+In, -Out, +Options) is det.
 %
-%	Perform unicode normalization operations.  Options is a list
-%	of operations.  Defined operations are:
+%   Perform unicode normalization operations.  Options is a list
+%   of operations.  Defined operations are:
 %
-%	    * stable
-%	    Unicode Versioning Stability has to be respected.
-%	    * compat
-%	    Compatiblity decomposition (i.e. formatting information is lost)
-%	    * compose
-%	    Return a result with composed characters.
-%	    * decompose
-%	    Return a result with decomposed characters.
-%	    * ignore
-%	    Strip "default ignorable characters"
-%	    * rejectna
-%	    Return an error, if the input contains unassigned code
-%	    points.
-%	    * nlf2ls
-%	    Indicating that NLF-sequences (LF, CRLF, CR, NEL) are
-%           representing a line break, and should be converted to the
-%           unicode character for line separation (LS).
-%           * nlf2ps
-%           Indicating that NLF-sequences are representing a paragraph
-%           break, and should be converted to the unicode character for
-%           paragraph separation (PS).
-%           * nlf2lf
-%           Indicating that the meaning of NLF-sequences is unknown.
-%           * stripcc
-%           Strips and/or convers control characters.
-%           NLF-sequences are transformed into space, except if one of
-%           the NLF2LS/PS/LF options is given.
-%           HorizontalTab (HT) and FormFeed (FF) are treated as a
-%           NLF-sequence in this case.
-%           All other control characters are simply removed.
-%           * casefold
-%           Performs unicode case folding, to be able to do a
-%           case-insensitive string comparison.
-%           * charbound
-%           Inserts 0xFF bytes at the beginning of each sequence which
-%           is representing a single grapheme cluster (see UAX#29).
-%           * lump
-%           (e.g. HYPHEN U+2010 and MINUS U+2212 to ASCII "-").
-%           (See module header for details.)
-%           If NLF2LF is set, this includes a transformation of
-%           paragraph and line separators to ASCII line-feed (LF).
-%           * stripmark
-%           Strips all character markings
-%           (non-spacing, spacing and enclosing) (i.e. accents)
-%           NOTE: this option works only with =compose= or =decompose=.
+%       * stable
+%       Unicode Versioning Stability has to be respected.
+%       * compat
+%       Compatiblity decomposition (i.e. formatting information is lost)
+%       * compose
+%       Return a result with composed characters.
+%       * decompose
+%       Return a result with decomposed characters.
+%       * ignore
+%       Strip "default ignorable characters"
+%       * rejectna
+%       Return an error, if the input contains unassigned code
+%       points.
+%       * nlf2ls
+%       Indicating that NLF-sequences (LF, CRLF, CR, NEL) are
+%       representing a line break, and should be converted to the
+%       unicode character for line separation (LS).
+%       * nlf2ps
+%       Indicating that NLF-sequences are representing a paragraph
+%       break, and should be converted to the unicode character for
+%       paragraph separation (PS).
+%       * nlf2lf
+%       Indicating that the meaning of NLF-sequences is unknown.
+%       * stripcc
+%       Strips and/or convers control characters.
+%       NLF-sequences are transformed into space, except if one of
+%       the NLF2LS/PS/LF options is given.
+%       HorizontalTab (HT) and FormFeed (FF) are treated as a
+%       NLF-sequence in this case.
+%       All other control characters are simply removed.
+%       * casefold
+%       Performs unicode case folding, to be able to do a
+%       case-insensitive string comparison.
+%       * charbound
+%       Inserts 0xFF bytes at the beginning of each sequence which
+%       is representing a single grapheme cluster (see UAX#29).
+%       * lump
+%       (e.g. HYPHEN U+2010 and MINUS U+2212 to ASCII "-").
+%       (See module header for details.)
+%       If NLF2LF is set, this includes a transformation of
+%       paragraph and line separators to ASCII line-feed (LF).
+%       * stripmark
+%       Strips all character markings
+%       (non-spacing, spacing and enclosing) (i.e. accents)
+%       NOTE: this option works only with =compose= or =decompose=.
 
-%%	unicode_nfd(+In, -Out) is det.
+%!  unicode_nfd(+In, -Out) is det.
 %
-%	Characters are decomposed by canonical equivalence.
+%   Characters are decomposed by canonical equivalence.
 
 unicode_nfd(In, Out) :-
-	unicode_map(In, Out, [stable,decompose]).
+    unicode_map(In, Out, [stable,decompose]).
 
-%%	unicode_nfc(+In, -Out) is det.
+%!  unicode_nfc(+In, -Out) is det.
 %
-%	Characters are decomposed  and  then   recomposed  by  canonical
-%	equivalence. It is possible for  the   result  to be a different
-%	sequence of characters  than  the  original.
+%   Characters are decomposed  and  then   recomposed  by  canonical
+%   equivalence. It is possible for  the   result  to be a different
+%   sequence of characters  than  the  original.
 %
-%	@see http://en.wikipedia.org/wiki/Unicode_equivalence#Normal_forms
+%   @see http://en.wikipedia.org/wiki/Unicode_equivalence#Normal_forms
 
 unicode_nfc(In, Out) :-
-	unicode_map(In, Out, [stable,compose]).
+    unicode_map(In, Out, [stable,compose]).
 
-%%	unicode_nfkd(+In, -Out) is det.
+%!  unicode_nfkd(+In, -Out) is det.
 %
-%	Characters are decomposed by compatibility equivalence.
+%   Characters are decomposed by compatibility equivalence.
 
 unicode_nfkd(In, Out) :-
-	unicode_map(In, Out, [stable,decompose,compat]).
+    unicode_map(In, Out, [stable,decompose,compat]).
 
-%%	unicode_nfkc(+In, -Out) is det.
+%!  unicode_nfkc(+In, -Out) is det.
 %
-%	Characters are decomposed  by   compatibility  equivalence, then
-%	recomposed by canonical equivalence.
+%   Characters are decomposed  by   compatibility  equivalence, then
+%   recomposed by canonical equivalence.
 
 unicode_nfkc(In, Out) :-
-	unicode_map(In, Out, [stable,compose,compat]).
+    unicode_map(In, Out, [stable,compose,compat]).
 
 
-%%	unicode_property(?Char, ?Property) is nondet.
+%!  unicode_property(?Char, ?Property) is nondet.
 %
-%	True if Property is defined for Char.  Property is a term
-%	Name(Value).  Defined property-names are:
+%   True if Property is defined for Char.  Property is a term
+%   Name(Value).  Defined property-names are:
 %
-%	    * category(atom)
-%	    Unicode code category of Char. This is   one  of Cc, Cf, Cn,
-%	    Co, Cs, Ll, Lm, Lo, Lt, Lu, Mc,  Me, Mn, Nd, Nl, No, Pc, Pd,
-%	    Pe, Pf, Pi, Po, Ps, Sc, Sk, Sm, So, Zl, Zp, Zs. When
-%	    testing, a single letter stands for all its subcategories.
-%	    E.g. to test form a letter, you can use
+%       * category(atom)
+%       Unicode code category of Char. This is   one  of Cc, Cf, Cn,
+%       Co, Cs, Ll, Lm, Lo, Lt, Lu, Mc,  Me, Mn, Nd, Nl, No, Pc, Pd,
+%       Pe, Pf, Pi, Po, Ps, Sc, Sk, Sm, So, Zl, Zp, Zs. When
+%       testing, a single letter stands for all its subcategories.
+%       E.g. to test form a letter, you can use
 %
-%	        ==
-%	        unicode_property(C, category('L'))
-%	        ==
+%           ==
+%           unicode_property(C, category('L'))
+%           ==
 %
-%	    * combining_class(integer)
-%	    * bidi_class(atom)
-%	    * decomp_type(atom)
-%	    * decomp_mapping(list(code))
-%	    * bidi_mirrored(bool)
-%	    * uppercase_mapping(code)
-%	    * lowercase_mapping(code)
-%	    * titlecase_mapping(code)
-%	    * comb1st_index(code)
-%	    * comb2nd_index(code)
-%	    * comp_exclusion(bool)
-%	    * ignorable(bool)
-%	    * control_boundary(bool)
-%	    * extend(bool)
-%	    * casefold_mapping(list(code))
+%       * combining_class(integer)
+%       * bidi_class(atom)
+%       * decomp_type(atom)
+%       * decomp_mapping(list(code))
+%       * bidi_mirrored(bool)
+%       * uppercase_mapping(code)
+%       * lowercase_mapping(code)
+%       * titlecase_mapping(code)
+%       * comb1st_index(code)
+%       * comb2nd_index(code)
+%       * comp_exclusion(bool)
+%       * ignorable(bool)
+%       * control_boundary(bool)
+%       * extend(bool)
+%       * casefold_mapping(list(code))
 %
-%	@tbd Complete documentation
+%   @tbd Complete documentation
 
 unicode_property(Code, Property) :-
-	nonvar(Code), nonvar(Property), !,
-	'$unicode_property'(Code, Property).
+    nonvar(Code), nonvar(Property),
+    !,
+    '$unicode_property'(Code, Property).
 unicode_property(Code, Property) :-
-	nonvar(Code), !,
-	property(Property),
-	'$unicode_property'(Code, Property).
+    nonvar(Code),
+    !,
+    property(Property),
+    '$unicode_property'(Code, Property).
 unicode_property(Code, Property) :-
-	var(Code), !,
-	between(0, 0x10ffff, Code),
-	property(Property),
-	'$unicode_property'(Code, Property).
+    var(Code),
+    !,
+    between(0, 0x10ffff, Code),
+    property(Property),
+    '$unicode_property'(Code, Property).
 
 property(category(_)).
 property(combining_class(_)).
