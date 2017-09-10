@@ -22,7 +22,7 @@
 
 \begin{abstract}
 This package wraps
-\url[utf8proc]{http://www.public-software-group.org/utf8proc} unicode
+\href{http://www.public-software-group.org/utf8proc}{utf8proc} unicode
 routines. This library provides the four unicode normalization forms
 (NFC, NFD, NFKC, NFKD) as well as access to the Unicode character
 properties.
