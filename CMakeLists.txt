@@ -9,3 +9,7 @@ swipl_plugin(
     C_SOURCES unicode4pl.c utf8proc.c
     C_LIBS ${LIBEDIT_LIBRARIES}
     PL_LIBS unicode.pl)
+
+pkg_doc(utf8proc
+	SECTION
+	    unicode.pl)
