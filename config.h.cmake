@@ -1,0 +1,1 @@
+#cmakedefine PL_ARITY_AS_SIZE @PL_ARITY_AS_SIZE@
