@@ -5,7 +5,8 @@ include("../cmake/PrologPackage.cmake")
 configure_file(config.h.cmake config.h)
 
 swipl_plugin(
-    unicode4pl
+    utf8proc
+    MODULE unicode4pl
     C_SOURCES unicode4pl.c utf8proc.c
     PL_LIBS unicode.pl)
 
