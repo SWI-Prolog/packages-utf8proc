@@ -3,7 +3,8 @@
     Author:        Jan Wielemaker
     E-mail:        J.Wielemaker@vu.nl
     WWW:           http://www.swi-prolog.org
-    Copyright (c)  2010-2013, University of Amsterdam
+    Copyright (c)  2010-2020, University of Amsterdam
+                              CWI, Amsterdam
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
@@ -40,7 +41,6 @@
             unicode_nfkd/2,             % +In, -Out
             unicode_nfkc/2              % +In, -Out
           ]).
-
 :- use_foreign_library(foreign(unicode4pl)).
 
 /** <module> Unicode string handling
