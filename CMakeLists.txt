@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.10)
 project(swipl-utf8proc)
 
 include("../cmake/PrologPackage.cmake")
