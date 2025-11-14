@@ -51,27 +51,15 @@
 #ifndef UTF8PROC_H
 #define UTF8PROC_H
 
-
 #include <stdlib.h>
 #include <sys/types.h>
-#ifdef _MSC_VER
-typedef signed char int8_t;
-typedef unsigned char uint8_t;
-typedef short int16_t;
-typedef unsigned short uint16_t;
-typedef int int32_t;
-#ifdef _WIN64
-#define ssize_t __int64
-#else
-#define ssize_t int
-#endif
-typedef unsigned char bool;
-enum {false, true};
-#else
 #include <stdbool.h>
 #include <inttypes.h>
-#endif
 #include <limits.h>
+#ifdef _MSC_VER
+#include <BaseTsd.h>
+typedef SSIZE_T ssize_t;
+#endif
 
 #ifdef __cplusplus
 extern "C" {
