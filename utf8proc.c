@@ -292,7 +292,7 @@ ssize_t utf8proc_decompose_char(int32_t uc, int32_t *dst, ssize_t bufsize,
       ssize_t written = 0;
       for (decomp_entry = property->decomp_mapping;
           *decomp_entry >= 0; decomp_entry++) {
-        written += utf8proc_decompose_char(*decomp_entry, dst+written,
+        written += utf8proc_decompose_char(*decomp_entry, dst ? dst+written : 0,
           (bufsize > written) ? (bufsize - written) : 0, options,
         last_boundclass);
         if (written < 0) return UTF8PROC_ERROR_OVERFLOW;
