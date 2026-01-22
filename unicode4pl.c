@@ -239,15 +239,11 @@ unify_symbol(term_t arg, int code, pmap *map)
 
     if ( map == category_map )
     { buf[0] = m->name[0];
-      buf[1] = tolower(m->name[1]);
+      buf[1] = (char) tolower(m->name[1]); /* safe cast */
       buf[2] = 0;
     } else
     { for(s=m->name,o=buf; *s; s++)
-      { if ( isupper(*s) )
-	  *o++ = tolower(*s);
-	else
-	  *o++ = *s;
-      }
+	*o++ = (char) tolower(*s); /* simplified */
       *o = 0;
     }
 
