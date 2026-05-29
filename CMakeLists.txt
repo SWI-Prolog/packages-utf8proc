@@ -122,6 +122,8 @@ pkg_doc(utf8proc
 	    unicode_security.pl
 	    uniname.pl)
 
-test_libs(utf8proc uts39 uniname)
+test_libs(utf8proc uts39 uniname
+	TEST_FILES
+		confusable_demo.pl)
 
 endif()
